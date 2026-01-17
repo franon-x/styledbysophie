@@ -7,17 +7,21 @@ function getQueryParams() {
     };
 }
 
-// Populate the form fields on booking page
 document.addEventListener('DOMContentLoaded', () => {
     const params = getQueryParams();
+
     const styleInput = document.getElementById('style');
     const priceInput = document.getElementById('price');
-
-    if (styleInput) styleInput.value = params.style;
-    if (priceInput) priceInput.value = params.price;
-
-    // WhatsApp Button
     const whatsappBtn = document.getElementById('whatsappBtn');
+
+    // Populate fields
+    if (styleInput) styleInput.value = params.style;
+
+    if (priceInput && params.price) {
+        priceInput.value = `₦${Number(params.price).toLocaleString()}`;
+    }
+
+    // WhatsApp booking
     if (whatsappBtn) {
         whatsappBtn.addEventListener('click', () => {
             const date = document.getElementById('date').value;
@@ -28,9 +32,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const message = `Hello Styled by Sophie,%0AI want to book ${styleInput.value}%0APrice: ₦${priceInput.value}%0ADate: ${date}%0ATime: ${time}`;
+            const message = `
+Hello Styled by Sophie 👋
+I would like to book:
+
+💇 Hairstyle: ${styleInput.value}
+💰 Price: ₦${Number(params.price).toLocaleString()}
+📅 Date: ${date}
+⏰ Time: ${time}
+            `.trim();
+
             const phone = '2348156647487';
-            const url = `https://wa.me/${phone}?text=${message}`;
+            const encodedMessage = encodeURIComponent(message);
+
+            const url = `https://wa.me/${phone}?text=${encodedMessage}`;
             window.open(url, '_blank');
         });
     }
