@@ -1,0 +1,167 @@
+/* Reset & basic styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f0fa; /* Light purple background */
+    color: #333;
+}
+
+/* Hero / Header */
+.hero {
+    text-align: center;
+    padding: 60px 20px 40px 20px;
+    background-color: #6a0dad; /* Deep purple */
+    color: #f3e5f5;
+    border-radius: 0 0 30px 30px;
+    position: relative; /* for contact */
+}
+
+.hero h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+}
+
+.hero p {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+/* Contact Info Top Right */
+.contact-top {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-align: right;
+    font-size: 0.9rem;
+    color: #f3e5f5;
+}
+
+.contact-top span {
+    display: block;
+    margin: 5px 0;
+}
+
+.contact-top a {
+    color: #f3e5f5;
+    text-decoration: none;
+    margin-left: 5px;
+    transition: color 0.3s ease;
+}
+
+.contact-top a:hover {
+    color: #ffe6ff;
+}
+
+/* Social icons under contact info */
+.contact-top .social-icons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+    gap: 8px;
+}
+
+.contact-top .social-icons a img.icon {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+}
+
+.contact-top .social-icons a img.icon:hover {
+    transform: scale(1.1);
+}
+
+/* Gallery */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background: linear-gradient(135deg, #f3e5f5, #e1bee7);
+    border-radius: 20px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 3px solid #6a0dad;
+    border-radius: 20px 20px 0 0;
+}
+
+.card h3 {
+    margin: 10px 0 5px 0;
+    color: #4b0082;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.card p {
+    margin-bottom: 10px;
+    color: #6a0dad;
+    font-weight: 600;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #6a0dad, #7b1fa2);
+    color: #f3e5f5;
+    padding: 12px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #7b1fa2, #8e24aa);
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .contact-top {
+        position: static;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 0.85rem;
+    }
+
+    .contact-top .social-icons {
+        justify-content: center;
+        margin-top: 5px;
+        gap: 10px;
+    }
+
+    .card h3 {
+        font-size: 1rem;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}
