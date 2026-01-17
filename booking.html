@@ -4,32 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Your Style - Styled by Sophie</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
     <header class="hero">
         <h1>Book Your Style</h1>
     </header>
 
     <section class="booking-form">
         <form id="bookingForm">
+
             <label for="style">Hairstyle:</label>
-            <input type="text" id="style" name="style" readonly>
+            <input type="text" id="style" readonly>
 
             <label for="price">Price (₦):</label>
-            <input type="text" id="price" name="price" readonly>
+            <input type="text" id="price" readonly>
 
             <label for="date">Select Date:</label>
-            <input type="date" id="date" name="date" required>
+            <input type="date" id="date" required>
 
             <label for="time">Select Time:</label>
-            <input type="time" id="time" name="time" required>
+            <input type="time" id="time" required>
 
-            <button type="button" id="whatsappBtn" class="btn">Confirm Booking on WhatsApp</button>
+            <button type="button" class="btn" onclick="sendToWhatsApp()">
+                Confirm Booking on WhatsApp
+            </button>
+
         </form>
     </section>
 
-    <script src="js/script.js"></script>
+    <script>
+        // Get URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const style = params.get("style");
+        const price = params.get("price");
+
+        // Auto-fill inputs
+        if (style) document.getElementById("style").value = style;
+        if (price) document.getElementById("price").value = "₦" + Number(price).toLocaleString();
+
+        function sendToWhatsApp() {
+            const date = document.getElementById("date").value;
+            const time = document.getElementById("time").value;
+
+            if (!date || !time) {
+                alert("Please select date and time");
+                return;
+            }
+
+            const message = `Hello Sophie 👋%0A
+I would like to book:%0A
+💇 Hairstyle: ${style}%0A
+💰 Price: ₦${Number(price).toLocaleString()}%0A
+📅 Date: ${date}%0A
+⏰ Time: ${time}`;
+
+            const phoneNumber = "2348156647487";
+            window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+        }
+    </script>
+
 </body>
 </html>
